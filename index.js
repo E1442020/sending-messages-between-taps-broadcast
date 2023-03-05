@@ -7,15 +7,14 @@ const bc = new BroadcastChannel("test-channel");
 const dataEmpty = document.querySelector(".data-empty");
 
 const addDataToContainer = (data) => {
-  // if (!isMessageFound) {
-  //     isMessageFound = true
-  //     messagesContainer.innerHTML = ""
-  // }
+  dataEmpty.style.display = "none";
   dataContainer.innerHTML += `
     <div class="data-content">
-        <h3> ${data.name}</h3>
-        <p> ${data.age}</p>
+        <h4> ${data.name}</h4>
+        <h4> ${data.age}</h4>
+        
     </div>
+    <hr/>
     `;
 };
 bc.onmessage = (msg) => {
@@ -29,11 +28,7 @@ form.addEventListener("submit", (e) => {
     name: name.value,
     age: age.value,
   };
-//   const arr = [];
-//   arr.push(user);
-  if (user.age.length > 0&&user.name.length>0) {
-    dataEmpty.style.display = "none";
-  }
+
   if (name.value.trim().length === 0 || age.value.trim().length === 0) {
     alert("data field is required");
     return;
